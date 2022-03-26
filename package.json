@@ -1,0 +1,20 @@
+{
+  "name": "2minutejson",
+  "version": "1.0.0",
+  "description": "JSON Share with 2 minute OTP",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Abdul Noushad Sheikh",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "mongodb": "^4.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
