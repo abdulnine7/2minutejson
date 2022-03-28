@@ -9,6 +9,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html')
+});
+
 // Insert json in DB
 app.post('/', async (req, res) => {
   const collection = await util.loadJSONCollection();
@@ -19,7 +23,7 @@ app.post('/', async (req, res) => {
     createdAt: new Date(),
 
   });
-  res.status(201).send({ opt: otp });
+  res.status(201).send({ otp: otp });
 });
 
 // Fetch json from DB
