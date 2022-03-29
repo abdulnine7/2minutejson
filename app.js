@@ -1,7 +1,7 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const util = require('./util')
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const util = require("./util");
 
 const app = express();
 
@@ -9,42 +9,37 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html')
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 // Insert json in DB
-app.post('/', async (req, res) => {
-  const collection = await util.loadJSONCollection();
+app.post("/", async (req, res) => {
+  util.removeOld(); //deleting data older than 2 minute
   const otp = await util.generateOTP();
-  await collection.insertOne({
-    otp: otp,
-    json: req.body.json,
-    createdAt: new Date(),
+  const data = await util.insertOne(otp, req.body.json);
+  delete data._id;
 
-  });
-  res.status(201).send({ otp: otp });
+  res.status(201).send({ data: data });
 });
 
 // Fetch json from DB
-app.get('/:otp', async (req, res) => {
-  const collection = await util.loadJSONCollection();
-  const data = await collection.findOneAndDelete({ otp: parseInt(req.params.otp) });
-  // console.log(data.value);
-  if(data.value == null){
-    res.status(410).send({"error": "invalid otp or timeout."})
-  }else {
-    res.status(200).send(data.value);
-  }
+app.get("/:otp", async (req, res) => {
+  util.removeOld(); //deleting data older than 2 minute
+  const data = await util.fetchOne(parseInt(req.params.otp));
+  util.removeOne(parseInt(req.params.otp));
+
+  if (data == null) res.status(410).send({ error: "invalid otp or timeout." });
+  else res.status(200).send(data);
 });
 
 // Handle production
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
   // Static folder
-  app.use(express.static(__dirname + '/public/'));
+  app.use(express.static(__dirname + "/public/"));
 
   // Handle SPA
-  app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
+  app.get(/.*/, (req, res) => res.sendFile(__dirname + "/public/index.html"));
 }
 
 const port = process.env.PORT || 5000;

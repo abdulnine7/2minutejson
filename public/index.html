@@ -1,71 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>2MinuteJSON</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism-tomorrow.min.css">
-</head>
-<body>
+  <head>
+    <title>2MinuteJSON</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism-tomorrow.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
+      integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS"
+      crossorigin="anonymous"
+    />
 
-<div class="container-fluid p-5 bg-primary text-white text-center">
-  <h1 class="display-2" style="font-weight: 400">2Minute{JSON}</h1>
-  <p class="display-6" style="font-size: 1.5rem;">Get your json data transfered using a 4 digit one time password key!</p> 
-</div>
-  
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-md-8 mx-auto">
-      <h3 class="display-6" style="font-size: 2.5rem;">Description:</h3>
-      <p>2MinuteJSON is a free tool to share json data between apps using simple one time password method. The API accepts post request on the root url and generates a OTP. The data is stored for 2 minutes on the server DB. Once the time is exhausted or the data is retrived using OTP the data is deleted from the server DB.</p>
+    <!-- Meta tags start-->
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta
+      content="black-translucent"
+      name="apple-mobile-web-app-status-bar-style"
+    />
+    <link href="favicon.ico" rel="shortcut icon" />
+    <meta
+      content="https://raw.githubusercontent.com/abdulnine7/2minutejson/main/public/2minutejson.svg"
+      property="og:image"
+    />
+    <meta content="2Minute{JSON}" property="og:title" />
+    <meta content="2minutejson.ml" property="og:site_name" />
+    <meta content="http://2minutejson.ml/" property="og:url" />
+    <meta
+      content="2MinuteJSON is a free tool to share json data between apps using simple OTP."
+      property="og:description"
+    />
+    <meta
+      content="2MinuteJSON is a free tool to share json data between apps using simple OTP."
+    />
+    <meta content="Abdul Noushad Sheikh" name="author" />
+    <meta content="Abdul Noushad Sheikh" name="copyright" />
+    <!-- Meta tags end -->
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand text-success fw-bold mx-2" href="#"
+          >2Minute{JSON}</a
+        >
+        <button
+          class="navbar-toggler navbar-toggler-right ms-auto"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarToggler"
+          aria-controls="navbarToggler"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+          <ul class="d-flex navbar-nav ms-auto mb-2">
+            <li class="nav-item mx-2">
+              <a class="nav-link active" aria-current="page" href="#description"
+                >Description</a
+              >
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link active" aria-current="page" href="#routes"
+                >Routes</a
+              >
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link active" aria-current="page" href="#tryit"
+                >Try It</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="container-fluid p-5 bg-success text-white text-center d-flex flex-column justify-content-center"
+      style="min-height: 50vh"
+    >
+      <h1 class="display-2" style="font-weight: 400">2Minute&hairsp;{JSON}</h1>
+      <p class="display-6" style="font-size: 1.5rem">
+        Get your json data transfered using a 4 digit one time password key!
+      </p>
+      <p class="display-6" style="font-size: 1.8rem">
+        Created using <strong>Express</strong> + <strong>NeDB</strong>.
+      </p>
+    </div>
 
-      <h3 class="display-6" style="font-size: 2.5rem;">Routes</h3>
-      <p>Only GET and POST HTTP methods are supported.</p>
-      <table class="table table-borderless table-sm" style="max-width: 200px;">
-        <thead>
-          <tr>
-            <th>Method</th>
-            <th>Route</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>GET</td>
-            <td>/:otp</td>
-          </tr>
-          <tr>
-            <td>POST</td>
-            <td>/</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="container mt-5 fw-light">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <h3 class="display-6" style="font-size: 2.5rem" id="description">
+            Description:
+          </h3>
+          <p>
+            2MinuteJSON is a free tool to share json data between apps using
+            simple one time password method. The API accepts post request on the
+            root url and generates a OTP. The data is stored for 2 minutes on
+            the server DB. Once the time is exhausted or the data is retrived
+            using OTP the data is deleted from the server DB.
+          </p>
 
-      <h3 class="display-6" style="font-size: 2.5rem;">Try it</h3>
-      <p>Try firing the below http POST method to generate a OTP.</p>
-      <pre class="rounded"><code id="post-code" class="p-0 language-javascript">
+          <h3 class="display-6" style="font-size: 2.5rem" id="routes">
+            Routes
+          </h3>
+          <p>Only GET and POST HTTP methods are supported.</p>
+          <table
+            class="table table-borderless table-sm"
+            style="max-width: 200px"
+          >
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Route</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>GET</td>
+                <td>/:otp</td>
+              </tr>
+              <tr>
+                <td>POST</td>
+                <td>/</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="display-6" style="font-size: 2.5rem" id="tryit">Try it</h3>
+          <p>Try firing the below http POST method to generate a OTP.</p>
+          <pre
+            class="rounded"
+          ><code id="post-code" class="p-0 language-javascript">
 
       </code> </pre>
 
-      <button id="run-button" class="btn btn-success px-4 rounded"  onclick="postRun()"> Run script </button>
-      <pre class="p-3 rounded"><code class="language-json" id="result-json">
+          <button
+            id="run-button"
+            class="btn btn-success px-4 rounded"
+            onclick="postRun()"
+          >
+            Run script
+          </button>
+          <pre class="p-3 rounded"><code class="language-json" id="result-json">
    { }
       </code></pre>
-      <div id="result"></div>
+          <div id="result"></div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
+    <div class="mt-5 p-4 bg-dark text-white text-center">
+      <p class="fw-light">
+        Coded and maintained with
+        <i class="fa-solid fa-heart text-danger"></i> <br class="d-sm-none" />
+        by
+        <a
+          href="https:abdul.co.in"
+          target="_blank"
+          class="text-decoration-none fw-bolder"
+          >Abdul</a
+        >
+        © 2021
+      </p>
+    </div>
 
-<div class="mt-5 p-4 bg-dark text-white text-center">
-  <p>Coded and maintained with ❤️ by <a href="https:abdul.co.in" target="_blank">abdul</a> © 2021  </p>
-</div>
-
-<script>
-  var pc = document.getElementById("post-code");
-  pc.innerHTML = '    var settings = {\n\
-        "url": "'+ window.location.href +'",\n\
+    <script>
+      var pc = document.getElementById("post-code");
+      pc.innerHTML =
+        '    var settings = {\n\
+        "url": "' +
+        window.location.href +
+        '",\n\
         "method": "POST",\n\
         "headers": {\n\
             "Content-Type": "application/json"\n\
@@ -77,42 +193,52 @@
      \n\
     $.ajax(settings).done(function (response) {\n\
         console.log(response);\n\
-    });'
+    });';
 
-    function postRun() {
-      var runbtn = document.getElementById("run-button");
-      runbtn.disabled = true;
-      runbtn.innerHTML = '<div class="spinner-border spinner-border-sm"></div> &nbsp; Running...';
-
-      var settings = {
-        "url": window.location.href,
-        "method": "POST",
-        "headers": {
-            "Content-Type": "application/json"
-        },
-        "data": JSON.stringify({
-            "json": '{ "message" : "This is awesome!" }'
-        }),
-    };
-     
-    $.ajax(settings).done(function (response, status ,xhr) {
-        console.log(response);
-        if(status == "success"){
-          document.getElementById('result').innerHTML = 'Now you can run the GET request to retrive the data: <a href="'+ window.location.href + response.otp + '" target="_blank">'+ window.location.href + '<strong>'+response.otp+'</strong>' +'</a>';
-          document.getElementById('result-json').innerHTML = JSON.stringify(response);
-        } else {
-          document.getElementById('result').innerHTML = 'Failed to process the request. Reason: ' + xhr.status;
-        }
-        
-
+      function postRun() {
         var runbtn = document.getElementById("run-button");
-        runbtn.disabled = false;
-        runbtn.innerHTML = 'Run script';
-    }); 
-    }
- </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/prism.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        runbtn.disabled = true;
+        runbtn.innerHTML =
+          '<div class="spinner-border spinner-border-sm"></div> &nbsp; Running...';
 
-</body>
+        var settings = {
+          url: window.location.href,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          data: JSON.stringify({
+            json: '{ "message" : "This is awesome!" }',
+          }),
+        };
+
+        $.ajax(settings).done(function (response, status, xhr) {
+          console.log(response);
+          if (status == "success") {
+            document.getElementById("result").innerHTML =
+              'Now you can run the GET request to retrive the data: <a class="fw-normal" href="' +
+              window.location.href +
+              response.data.otp +
+              '" target="_blank">' +
+              window.location.href +
+              "<strong>" +
+              response.data.otp +
+              "</strong>" +
+              "</a>";
+            document.getElementById("result-json").innerHTML =
+              JSON.stringify(response);
+          } else {
+            document.getElementById("result").innerHTML =
+              "Failed to process the request. Reason: " + xhr.status;
+          }
+
+          var runbtn = document.getElementById("run-button");
+          runbtn.disabled = false;
+          runbtn.innerHTML = "Run script";
+        });
+      }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/prism.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </body>
 </html>
