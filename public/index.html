@@ -217,10 +217,10 @@
           if (status == "success") {
             document.getElementById("result").innerHTML =
               'Now you can run the GET request to retrive the data: <a class="fw-normal" href="' +
-              window.location.href +
+              window.location.href.split("#")[0] +
               response.data.otp +
               '" target="_blank">' +
-              window.location.href +
+              window.location.href.split("#")[0] +
               "<strong>" +
               response.data.otp +
               "</strong>" +
