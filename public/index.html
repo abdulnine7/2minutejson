@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>2MinuteJSON</title>
+    <title>2Min{JSON}</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,13 +28,10 @@
       name="apple-mobile-web-app-status-bar-style"
     />
     <link href="favicon.ico" rel="shortcut icon" />
-    <meta
-      content="https://raw.githubusercontent.com/abdulnine7/2minutejson/main/public/2minutejson.svg"
-      property="og:image"
-    />
+    <meta content="https://a2mj.herokuapp.com/logo.svg" property="og:image" />
     <meta content="2Minute{JSON}" property="og:title" />
-    <meta content="2minutejson.ml" property="og:site_name" />
-    <meta content="http://2minutejson.ml/" property="og:url" />
+    <meta content="2minutejson" property="og:site_name" />
+    <meta content="https://a2mj.herokuapp.com/" property="og:url" />
     <meta
       content="2MinuteJSON is a free tool to share json data between apps using simple OTP."
       property="og:description"
@@ -45,6 +42,25 @@
     <meta content="Abdul Noushad Sheikh" name="author" />
     <meta content="Abdul Noushad Sheikh" name="copyright" />
     <!-- Meta tags end -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-WG5TJVLX8Y"
+    ></script>
+    <script>
+      if (location.hostname != "localhost") {
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        gtag("config", "G-WG5TJVLX8Y");
+      } else {
+        console.log("dev mode detected, don't track view");
+      }
+    </script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -92,8 +108,12 @@
       <p class="display-6" style="font-size: 1.5rem">
         Get your json data transfered using a 4 digit one time password key!
       </p>
+      <p></p>
       <p class="display-6" style="font-size: 1.8rem">
-        Created using <strong>Express</strong> + <strong>NeDB</strong>.
+        Created using <br class="d-sm-none" />
+        <strong>Express</strong> + <strong>NeDB</strong>.
+        <br />
+        Deployed on <strong>Heroku</strong>.
       </p>
     </div>
 
@@ -117,22 +137,25 @@
           <p>Only GET and POST HTTP methods are supported.</p>
           <table
             class="table table-borderless table-sm"
-            style="max-width: 200px"
+            style="max-width: 400px"
           >
             <thead>
               <tr>
                 <th>Method</th>
                 <th>Route</th>
+                <th>Parameters</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>GET</td>
-                <td>/:otp</td>
+                <td>/json/?</td>
+                <td>otp (number)</td>
               </tr>
               <tr>
                 <td>POST</td>
                 <td>/</td>
+                <td>json (string)</td>
               </tr>
             </tbody>
           </table>
@@ -218,9 +241,11 @@
             document.getElementById("result").innerHTML =
               'Now you can run the GET request to retrive the data: <a class="fw-normal" href="' +
               window.location.href.split("#")[0] +
+              "json/?otp=" +
               response.data.otp +
               '" target="_blank">' +
               window.location.href.split("#")[0] +
+              "json/?otp=" +
               "<strong>" +
               response.data.otp +
               "</strong>" +
