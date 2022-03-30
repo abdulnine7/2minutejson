@@ -28,7 +28,7 @@
       name="apple-mobile-web-app-status-bar-style"
     />
     <link href="favicon.ico" rel="shortcut icon" />
-    <meta content="https://a2mj.herokuapp.com/logo.svg" property="og:image" />
+    <meta content="https://a2mj.herokuapp.com/logo.png" property="og:image" />
     <meta content="2Minute{JSON}" property="og:title" />
     <meta content="2minutejson" property="og:site_name" />
     <meta content="https://a2mj.herokuapp.com/" property="og:url" />
@@ -65,7 +65,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand text-success fw-bold mx-2" href="#"
+        <a class="navbar-brand text-success fw-bold mx-2" href="/"
           >2Minute{JSON}</a
         >
         <button
@@ -120,15 +120,24 @@
     <div class="container mt-5 fw-light">
       <div class="row">
         <div class="col-md-8 mx-auto">
+          <figure class="text-center">
+            <blockquote class="blockquote">
+              <p>
+                Hassle-free API created for people who hate to create backend
+                for data sync/share.
+              </p>
+            </blockquote>
+          </figure>
+
           <h3 class="display-6" style="font-size: 2.5rem" id="description">
             Description:
           </h3>
           <p>
             2MinuteJSON is a free tool to share json data between apps using
-            simple one time password method. The API accepts post request on the
-            root url and generates a OTP. The data is stored for 2 minutes on
-            the server DB. Once the time is exhausted or the data is retrived
-            using OTP the data is deleted from the server DB.
+            simple one time password. The API accepts post request on the root
+            url and generates a OTP. The data is stored for 2 minutes on the
+            server DB. Once the 2 minute time is exhausted or the data is
+            retrived using OTP the data is flushed from the server DB.
           </p>
 
           <h3 class="display-6" style="font-size: 2.5rem" id="routes">

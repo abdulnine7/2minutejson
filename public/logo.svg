@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com" viewBox="0 0 150 50" width="300" height="200">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com" viewBox="0 0 150 50" width="300" height="100">
   <defs>
     <style bx:fonts="Artifika">@import url(https://fonts.googleapis.com/css2?family=Ubuntu);</style>
   </defs>
