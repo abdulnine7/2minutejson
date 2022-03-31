@@ -193,8 +193,10 @@
           >
             Run script
           </button>
-          <pre class="p-3 rounded"><code class="language-json" id="result-json">
-   { }
+          <pre
+            class="p-3 rounded"
+          ><code class="language-javascript" id="result-json">
+   
       </code></pre>
           <div id="result"></div>
         </div>
@@ -207,7 +209,7 @@
         <i class="fa-solid fa-heart text-danger"></i> <br class="d-sm-none" />
         by
         <a
-          href="https:abdul.co.in"
+          href="https://abdul.co.in"
           target="_blank"
           class="text-decoration-none fw-bolder"
           >Abdul</a
@@ -216,71 +218,7 @@
       </p>
     </div>
 
-    <script>
-      var pc = document.getElementById("post-code");
-      pc.innerHTML =
-        '    var settings = {\n\
-        "url": "' +
-        window.location.href +
-        '",\n\
-        "method": "POST",\n\
-        "headers": {\n\
-            "Content-Type": "application/json"\n\
-        },\n\
-        "data": JSON.stringify({\n\
-            "json": \'{ "message" : "This is awesome!" }\'\n\
-        }),\n\
-    };\n\
-     \n\
-    $.ajax(settings).done(function (response) {\n\
-        console.log(response);\n\
-    });';
-
-      function postRun() {
-        var runbtn = document.getElementById("run-button");
-        runbtn.disabled = true;
-        runbtn.innerHTML =
-          '<div class="spinner-border spinner-border-sm"></div> &nbsp; Running...';
-
-        var settings = {
-          url: window.location.href,
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          data: JSON.stringify({
-            json: '{ "message" : "This is awesome!" }',
-          }),
-        };
-
-        $.ajax(settings).done(function (response, status, xhr) {
-          console.log(response);
-          if (status == "success") {
-            document.getElementById("result").innerHTML =
-              'Now you can run the GET request to retrive the data: <a class="fw-normal" href="' +
-              window.location.href.split("#")[0] +
-              "json/?otp=" +
-              response.data.otp +
-              '" target="_blank">' +
-              window.location.href.split("#")[0] +
-              "json/?otp=" +
-              "<strong>" +
-              response.data.otp +
-              "</strong>" +
-              "</a>";
-            document.getElementById("result-json").innerHTML =
-              JSON.stringify(response);
-          } else {
-            document.getElementById("result").innerHTML =
-              "Failed to process the request. Reason: " + xhr.status;
-          }
-
-          var runbtn = document.getElementById("run-button");
-          runbtn.disabled = false;
-          runbtn.innerHTML = "Run script";
-        });
-      }
-    </script>
+    <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/prism.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </body>

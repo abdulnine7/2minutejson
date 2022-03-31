@@ -1,1 +1,4 @@
+{"otp":5930,"createdAt":1648721341297,"json":"{ \"message\" : \"This is awesome!\" }","_id":"14fAsYP46MgFM1Rj"}
 {"$$indexCreated":{"fieldName":"otp","unique":true,"sparse":true}}
+{"$$deleted":true,"_id":"14fAsYP46MgFM1Rj"}
+{"otp":7884,"createdAt":1648721524986,"json":"{ \"message\" : \"This is awesome!\" }","_id":"v9f4TsYxoznqyYle"}
