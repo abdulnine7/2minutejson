@@ -3,7 +3,7 @@ var pc = document.getElementById("post-code");
 pc.innerHTML =
   'var settings = {\n\t"url": "' +
   window.location.href +
-  '",\n\t"method": "POST",\n\t"headers": {\n\t\t"Content-Type": "application/json"\n\t},\n\t"data": JSON.stringify({\n\t\t"json": \'{ "message" : "This is awesome!" }\'\n\t}),\n};\n\n$.ajax(settings).done(function (response) {\n\tconsole.log(response);\n});';
+  '",\n\t"method": "POST",\n\t"headers": {\n\t\t"Content-Type": "application/json"\n\t},\n\t"data": JSON.stringify({\n\t\t"json": { \n\t\t\t"message" : "This is awesome!" \n\t\t}\n\t}),\n};\n\n$.ajax(settings).done(function (response) {\n\tconsole.log(response);\n});';
 
 $("#run-button").click(function () {
   var runbtn = document.getElementById("run-button");
@@ -18,7 +18,9 @@ $("#run-button").click(function () {
       "Content-Type": "application/json",
     },
     data: JSON.stringify({
-      json: '{ "message" : "This is awesome!" }',
+      json: { 
+        "message" : "This is awesome!"
+      },
     }),
   };
 
@@ -80,7 +82,7 @@ $("#sendform").on("submit", function (e) {
         "Content-Type": "application/json",
       },
       data: JSON.stringify({
-        json: '{ "message" : "' + window.btoa(messageText) + '" }',
+        json: { "message" : window.btoa(messageText) },
       }),
     };
 
@@ -142,15 +144,13 @@ $("#fetchform").on("submit", function (e) {
     $.ajax(settings)
       .done(function (response, status, xhr) {
         console.log(response);
-        console.log(status);
-        console.log(xhr);
 
         var alert = document.createElement("div");
         alert.className = "alert alert-primary alert-dismissible";
         alert.setAttribute("role", "alert");
         alert.innerHTML =
           "Message:<br/> <pre>" +
-          window.atob(JSON.parse(response.json).message) +
+          window.atob(response.json.message) +
           '</pre><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
         document.getElementById("messagePlaceholder").append(alert);
 
