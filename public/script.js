@@ -132,6 +132,8 @@ $("#fetchform").on("submit", function (e) {
     fetchbtn.disabled = false;
     fetchbtn.innerHTML = "Fetch Message";
   } else {
+    document.getElementById("inputotp").className = "form-control";
+    document.getElementById("inputotp").value = "";
     var settings = {
       url: window.location.href.split("#")[0] + "json/?otp=" + otp,
       method: "GET",
