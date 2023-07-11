@@ -49,7 +49,7 @@ app.get(/.*/, (req, res) => {
 //const port = process.env.PORT || 5000;
 //app.listen(port, () => console.log(`Server started on port ${port}`));
 
-app.listen(process.env.PORT || 5000, function() {
+app.listen(process.env.PORT || 3000, function() {
   console.log(
     "2Minute{JSON} Express server listening on port %d in %s mode",
     this.address().port,
