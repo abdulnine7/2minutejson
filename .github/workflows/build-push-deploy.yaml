@@ -2,7 +2,10 @@ name: Create and publish a Docker image to Github Packages
 
 on:
   push:
-    branches: ['master']
+    # branches: # Commenting staging from now onwards
+    #   - master
+    tags:
+      - v\d+\.\d+\.\d+
 
 env:
   REGISTRY: ghcr.io

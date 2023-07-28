@@ -4,12 +4,15 @@ name: Create and publish a Docker image to Google Container Registry
 # Configures this workflow to run every time a change is pushed to the branch called `release`.
 on:
   push:
-    branches: ['master']
+    # branches: # Commenting from now onwards to trigger action only on tags
+    #   - master
+    tags:
+      - v\d+\.\d+\.\d+
 
 # Defines two custom environment variables for the workflow. These are used for the Container registry domain, and a name for the Docker image that this workflow builds.
 env:
   REGISTRY: gcr.io
-  IMAGE_NAME: ${{ vars.PROJECT_ID }}/${{ github.sha }}
+  IMAGE_NAME: ${{ vars.PROJECT_ID }}/${{ vars.PROJECT_ID }}
 
 # There is a single job in this workflow. It's configured to run on the latest available version of Ubuntu.
 jobs:
@@ -44,5 +47,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ env.IMAGE_NAME }}:${{ github.sha }}, $GITHUB_REF_NAME
