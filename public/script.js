@@ -1,5 +1,5 @@
 var pc = document.getElementById("post-code");
-document.getElementById("footer-year").innerHTML = newDate().getFullYear()
+document.getElementById("footer-year").innerHTML = Date().split(" ")[3] 
 
 pc.innerHTML =
   'var settings = {\n\t"url": "' +
