@@ -1,11 +1,9 @@
-name: Create and publish a Docker image to Github Packages
+name: Publish Docker image to Github Packages
 
 on:
   push:
-    # branches: # Commenting staging from now onwards
-    #   - master
     tags:
-      - v\d+\.\d+\.\d+
+      - v\d+\.\d+\.\d+ # Trigger on semantic versioning tags
 
 env:
   REGISTRY: ghcr.io
